@@ -66,7 +66,7 @@ if (!is_null($events['events']))
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
-			$messages = ['type' => 'text', 'text' => "ไม่มีเมนูอาหารที่คุณป้อน "."\n"."หรือกรุณาป้อนข้อความให้ถูกต้อง" ."\n" ."" ."\n". ];
+			$messages = ['type' => 'text', 'text' => "ไม่มีเมนูอาหารที่คุณป้อน" . "\n" . "หรือกรุณาป้อนข้อความให้ถูกต้อง"];
 			if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "HELP")
 			{
 				$messages = ['type' => 'text', 'text' => "ป้อนชื่ออาหารได้เลยครับ"];
@@ -103,11 +103,8 @@ if (!is_null($events['events']))
 			{
 				$messages = ['type' => 'text', 'text' => "1 ชาม	150 กิโลแคลอรี่"];
             }
-            	
-            if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "กล้วยไข่")
-			{
-				$messages = ['type' => 'text', 'text' => "1 ลูก	40 กิโลแคลอรี่"];
-            }
+            
+            
 
 
 
