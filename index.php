@@ -1,6 +1,5 @@
 <?php
-$access_token = '/OD3B9Z7og+Jj/fQznFaRiYq23gVo7gD1+PxLPItW4WrBDTvKp08Ex5n9dxRjSM6VbROj9BAJZIE5PSP5meBL9GDYemfcdw6B5cpwu8hPtF++nQ2LfPPqL7DNIeckQdEn/+q18N8YVJFTbh7kt0oVwdB04t89/1O/w1cDnyilFU=
-';
+$access_token = '2SXOQ6j8Ipjcbg+PIgV8TexlTkhjodAiLYqXfdZ4Rvmv6y8gaLW9PDrVDP5SNvA+VbROj9BAJZIE5PSP5meBL9GDYemfcdw6B5cpwu8hPtEGCL15MFX8bilDpdvyVe8iI8p1Q3PFpIdn9047ldBvpAdB04t89/1O/w1cDnyilFU=';
 $host = "ec2-107-22-211-182.compute-1.amazonaws.com";
 $user = "mmdkvvqziulstc";
 $pass = "e10240d71df70c411f5201bc37491e9091491ff276b8d8b66f8e507ea5b7dc22";
