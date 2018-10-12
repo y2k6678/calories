@@ -119,7 +119,10 @@ if (!is_null($events['events']))
 			{
 				$messages = ['type' => 'text', 'text' => "1 ผล	30 กิโลแคลอรี่"];
             }
-           
+               if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "ใหม่")
+			{
+				$messages = ['type' => 'text', 'text' => "แฟนผมค้าบบ"];
+            }
 
 
 
