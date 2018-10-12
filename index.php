@@ -103,8 +103,23 @@ if (!is_null($events['events']))
 			{
 				$messages = ['type' => 'text', 'text' => "1 ชาม	150 กิโลแคลอรี่"];
             }
-            
-            
+            if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "กล้วยไข่")
+			{
+				$messages = ['type' => 'text', 'text' => "1 ชาม	40 กิโลแคลอรี่"];
+            }
+            if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "กล้วยคลุกมะพร้าว")
+			{
+				$messages = ['type' => 'text', 'text' => "1 ถ้วย	100 กิโลแคลอรี่"];
+            }
+            if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "กล้วยฉาบ")
+			{
+				$messages = ['type' => 'text', 'text' => "1 ชิ้น	29 กิโลแคลอรี่"];
+            }
+            if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "กล้วยตาก")
+			{
+				$messages = ['type' => 'text', 'text' => "1 ผล	30 กิโลแคลอรี่"];
+            }
+           
 
 
 
