@@ -102,8 +102,12 @@ if (!is_null($events['events']))
             if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "กระเพาะปลา")
 			{
 				$messages = ['type' => 'text', 'text' => "1 ชาม	150 กิโลแคลอรี่"];
-			}
-            
+            }
+            	
+            if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "กล้วยไข่")
+			{
+				$messages = ['type' => 'text', 'text' => "1 ลูก	40 กิโลแคลอรี่"];
+            }
 
 
 
