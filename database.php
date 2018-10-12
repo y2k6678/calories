@@ -1,7 +1,8 @@
 <?php 
-echo $_GET['getid'];
-echo $_GET['getLINK'];
-echo $_GET['getDATETIME'];
+echo $_GET['getID'];
+echo $_GET['getMENU'];
+echo $_GET['getUNIT'];
+echo $_GET['getCAL'];
 $host = "ec2-107-22-211-182.compute-1.amazonaws.com";
 $user = "mmdkvvqziulstc";
 $pass = "e10240d71df70c411f5201bc37491e9091491ff276b8d8b66f8e507ea5b7dc22";
