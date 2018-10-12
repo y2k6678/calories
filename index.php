@@ -66,12 +66,10 @@ if (!is_null($events['events']))
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
-			$messages = ['type' => 'text', 'text' => "ไม่มีคำสั่งที่คุณพิมพ์ "."\n"."พิมพ์ตัวอักษรตามที่กำหนดให้" ."\n" ."\n". "[help] เพื่อดูเมนู" 
-			// "text"
-			];
+			$messages = ['type' => 'text', 'text' => "ไม่มีเมนูอาหารที่คุณป้อน "."\n"."หรือกรุณาป้อนข้อความให้ถูกต้อง" ."\n" ."" ."\n". ];
 			if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "HELP")
 			{
-				$messages = ['type' => 'text', 'text' => "พิมพ์ตัวอักษรตามที่กำหนดให้"."\n"."\n"."[Info] เพื่อดูข้อมูลสถานที่"."\n"."[อากาศ] เพื่อดูสถานะอากาศปัจจุบัน" . "\n"  . "[ภาพ] เพื่อดูภาพล่าสุด"."\n"."[ภาพ 00:00] พิมพ์ภาพตามด้วยเวลา"."\n"."#อุปกรณ์จะถ่ายรูปทุกๆ 15 นาที"];
+				$messages = ['type' => 'text', 'text' => "ป้อนชื่ออาหารได้เลยครับ"];
 			}
 			//BeginCase
 			if (ereg_replace('[[:space:]]+', '', trim($text)) == "อากาศ"){
