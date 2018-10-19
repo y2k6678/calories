@@ -1,44 +1,12 @@
 <?php
 $access_token = '2SXOQ6j8Ipjcbg+PIgV8TexlTkhjodAiLYqXfdZ4Rvmv6y8gaLW9PDrVDP5SNvA+VbROj9BAJZIE5PSP5meBL9GDYemfcdw6B5cpwu8hPtEGCL15MFX8bilDpdvyVe8iI8p1Q3PFpIdn9047ldBvpAdB04t89/1O/w1cDnyilFU=';
-$host = "ec2-107-22-211-182.compute-1.amazonaws.com";
-$user = "mmdkvvqziulstc";
-$pass = "e10240d71df70c411f5201bc37491e9091491ff276b8d8b66f8e507ea5b7dc22";
-$db = "dcv361109jo6fh";
+$host = "ec2-54-225-97-112.compute-1.amazonaws.com";
+$user = "qrnbebahudbqmp";
+$pass = "a43af8db99a527ec88af37c48030569674700a18b57304f05e4348f81e81b94f";
+$db = "d4d2gobi48opm9";
 date_default_timezone_set("Asia/Bangkok");
 $date = date("Y-m-d");
-function showtime($time)
-{
-	$date = date("Y-m-d");
-	$h = split(":", $time);
-	if ($h[1] < 15)
-	{
-		$h[1] = "00";
-		$selectbydate = "select * from weatherstation where \"DATETIME\" BETWEEN '$date $h[0]:0:00' and '$date $h[0]:15:00' order by \"DATETIME\" desc limit 1";
-	}
-	else
-	if ($h[1] >= 15 && $h[1] < 30)
-	{
-		$h[1] = "15";
-		$selectbydate = "select * from weatherstation where \"DATETIME\" BETWEEN '$date $h[0]:15:01' and '$date $h[0]:30:00' order by \"DATETIME\" desc limit 1";
-	}
-	else
-	if ($h[1] >= 30 && $h[1] < 45)
-	{
-		$h[1] = "30";
-		$selectbydate = "select * from weatherstation where \"DATETIME\" BETWEEN '$date $h[0]:30:01' and '$date $h[0]:45:00' order by \"DATETIME\" desc limit 1";
-	}
-	else
-	if ($h[1] >= 45)
-	{
-		$h[1] = "45";
-		$selectbydate = "select * from weatherstation where \"DATETIME\" BETWEEN '$date $h[0]:45:01' and '$date $h[0]:59:59' order by \"DATETIME\" desc limit 1";
-	}
-	
-	return array(
-		$h[0] . ":" . $h[1],
-		$selectbydate
-	);
-}
+
 // database
 $dbconn = pg_connect("host=" . $GLOBALS['host'] . " port=5432 dbname=" . $GLOBALS['db'] . " user=" . $GLOBALS['user'] . " password=" . $GLOBALS['pass']) or die('Could not connect: ' . pg_last_error());
 // Get POST body content
@@ -52,7 +20,7 @@ $HUM = file_get_contents('https://api.thingspeak.com/channels/331361/fields/2/la
 $TEM = file_get_contents('https://api.thingspeak.com/channels/331361/fields/1/last.txt');
 $aba = ('https://i.imgur.com//yuRTcoH.jpg');
 // convert
-$sqlgetlastrecord = "select * from weatherstation order by \"DATETIME\" desc limit 1";
+$sqlgetlastrecord = "select MENU,CAL from calorie where MENU = ";
 if (!is_null($events['events']))
 {
 	// Loop through each event
@@ -119,17 +87,31 @@ if (!is_null($events['events']))
 			{
 				$messages = ['type' => 'text', 'text' => "1 ผล	30 กิโลแคลอรี่"];
             }
-               if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "ใหม่")
+           
+
+
+
+
+			if ( ereg_replace('[[:space:]]+', '', trim($textSplited[0])) == "")
 			{
-				$messages = ['type' => 'text', 'text' => "แฟนผมค้าบบ"];
-            }
-
-
-
-
-
-
-
+				$dataFromshowtime = showtime($textSplited[1]);
+				$rs = pg_query($dbconn, $dataFromshowtime[1]) or die("Cannot execute query: $query\n");
+				$templink = ""; 
+				$qcount=0;
+				while ($row = pg_fetch_row($rs))
+				{
+					$templink = $row[1];
+					$qcount++;
+				}
+				//$messages = ['type' => 'text', 'text' => "HI $dataFromshowtime[0] \n$dataFromshowtime[1] \n$templink"
+				if ($qcount > 0){
+				$messages = [
+				'type' => 'text',
+				'text' => $templink,
+					
+				];}
+		
+			}
 
 
 
