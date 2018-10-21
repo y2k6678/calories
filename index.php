@@ -65,144 +65,26 @@ if (!is_null($events['events']))
 			$text = $event['message']['text'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
-			// Build message to reply back
-			// $messages = ['type' => 'text', 'text' => "ไม่มีเมนูอาหารที่คุณป้อน" . "\n" . "หรือกรุณาป้อนข้อความให้ถูกต้อง"];
-			// if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "HELP")
-			// {
-			// 	$messages = ['type' => 'text', 'text' => "ป้อนชื่ออาหารได้เลยครับ"];
-			// }
-			// //BeginCase
-			// if (ereg_replace('[[:space:]]+', '', trim($text)) == "อากาศ"){
-				
-			// 	$messages = ['type' => 'text', 'text' => "สถานที่ : " . "มหาวิทยาลัยวลัยลักษณ์" .  "\n" . "อุณหภูมิ C :" . $TEM . "\n" . "ความชื้น :" . $HUM . " %" . "\n" . "[help] เพื่อดูเมนู"];
-			// }
 
 			$selectfoodmenu = 'select * from calorie where MENU like \'$text\' limit 1';
-			
-				$rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu\n");
-				$qcount=0;
-				$foodname = "";
-				$unit = "";
-				$cal = "";
-				while ($row = pg_fetch_row($rs))
-				{
-					$foodname = $row[1];
-					$unit = $row[2];
-					$cal = $row[3];
-					$qcount++;
-				}
-				if($qcount!=0)
-				$messages = ['type' => 'text',  'text' =>'รายการ : $foodname\nปริมาณ : $unit\nแคล : $cal'];
-				else
-				$messages = ['type' => 'text',  'text' =>'รายการ : $foodname ไม่มีในระบบ'];
+			$messages = ['type' => 'text',  'text' =>'รายการ : $foodname ไม่มีในระบบ'];
+			// $rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu\n");
+			// $qcount=0;
+			// $foodname = "";
+			// $unit = "";
+			// $cal = "";
+			// while ($row = pg_fetch_row($rs))
+			// {
+			// 	$foodname = $row[1];
+			// 	$unit = $row[2];
+			// 	$cal = $row[3];
+			// 	$qcount++;
+			// }
+			// if($qcount!=0)
+			// $messages = ['type' => 'text',  'text' =>'รายการ : $foodname\nปริมาณ : $unit\nแคล : $cal'];
+			// else
+			// $messages = ['type' => 'text',  'text' =>'รายการ : $foodname ไม่มีในระบบ'];
 
-			// }
-
-
-			// // id , menu ,unit ,cal
-			
-			
-			
-			
-			
-			//EndCase
-			// if (trim(strtoupper($text)) == "HI")
-			// {
-			// 	$messages = ['type' => 'text', 'text' => "hello"];
-			// }
-			// if ($text == "รูป")
-			// {
-			// 	$messages = ['type' => 'image', 'originalContentUrl' => "https://sv6.postjung.com/picpost/data/184/184340-1-2995.jpg", 'previewImageUrl' => "https://sv6.postjung.com/picpost/data/184/184340-1-2995.jpg"];
-			// }
-			// if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "INFO")
-			// {
-			// 	$messages = ['type' => 'text', 'text' => "มหาวิทยาลัยวลัยลักษณ์เป็นมหาวิทยาลัยของรัฐ และอยู่ในกำกับของรัฐบาลที่ได้รับพระมหากรุณาธิคุณจากพระบาทสมเด็จพระเจ้าอยู่หัว พระราชทานชื่ออันเป็นสร้อยพระนามในสมเด็จพระเจ้าลูกเธอ เจ้าฟ้าจุฬาภรณวลัยลักษณ์อัครราชกุมารี" ."\n"."อ่านเพิ่มเติม: https://www.wu.ac.th"];
-            // }
-            // if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "กระเพาะปลา")
-			// {
-			// 	$messages = ['type' => 'text', 'text' => "1 ชาม	150 กิโลแคลอรี่"];
-            // }
-            // if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "กล้วยไข่")
-			// {
-			// 	$messages = ['type' => 'text', 'text' => "1 ชาม	40 กิโลแคลอรี่"];
-            // }
-            // if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "กล้วยคลุกมะพร้าว")
-			// {
-			// 	$messages = ['type' => 'text', 'text' => "1 ถ้วย	100 กิโลแคลอรี่"];
-            // }
-            // if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "กล้วยฉาบ")
-			// {
-			// 	$messages = ['type' => 'text', 'text' => "1 ชิ้น	29 กิโลแคลอรี่"];
-            // }
-            // if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "กล้วยตาก")
-			// {
-			// 	$messages = ['type' => 'text', 'text' => "1 ผล	30 กิโลแคลอรี่"];
-            // }
-            //    if (ereg_replace('[[:space:]]+', '', strtoupper($text)) == "ใหม่")
-			// {
-			// 	$messages = ['type' => 'text', 'text' => "แฟนผมค้าบบ"];
-            // }
-				
-			// if ( ereg_replace('[[:space:]]+', '', trim($text)) == "ภาพ")
-			// {
-			// 	$rs = pg_query($dbconn, $sqlgetlastrecord) or die("Cannot execute query: $query\n");
-			// 	$templink = "";
-			// 	while ($row = pg_fetch_row($rs))
-			// 	{
-			// 		$templink = $row[1];
-			// 	}
-			// 	$messages = ['type' => 'image', 'originalContentUrl' => $templink, 'previewImageUrl' => $templink];
-			// }
-			// $textSplited = split(" ", $text);
-			// if ( ereg_replace('[[:space:]]+', '', trim($textSplited[0])) == "ภาพ")
-			// {
-			// 	$dataFromshowtime = showtime($textSplited[1]);
-			// 	$rs = pg_query($dbconn, $dataFromshowtime[1]) or die("Cannot execute query: $query\n");
-			// 	$templink = ""; 
-			// 	$qcount=0;
-			// 	while ($row = pg_fetch_row($rs))
-			// 	{
-			// 		$templink = $row[1];
-			// 		$qcount++;
-			// 	}
-			// 	//$messages = ['type' => 'text', 'text' => "HI $dataFromshowtime[0] \n$dataFromshowtime[1] \n$templink"
-			// 	if ($qcount > 0){
-			// 	$messages = [
-			// 	'type' => 'image',
-			// 	'originalContentUrl' => $templink,
-			// 		'previewImageUrl' => $templink
-			// 	];}
-			// 	else {
-			// 		$messages = [
-			// 			'type' => 'image',
-			// 			'originalContentUrl' => "https://imgur.com/aOWIijh.jpg",
-			// 				'previewImageUrl' => "https://imgur.com/aOWIijh.jpg" 
-		
-			// 			];
-			// 	}
-			// }
-			// if ($text == "ภาพ")
-			// {
-			// 	$rs = pg_query($dbconn, $sqlgetlastrecord) or die("Cannot execute query: $query\n");
-			// 	$templink = "";
-			// 	while ($row = pg_fetch_row($rs))
-			// 	{
-			// 		$templink = $row[1];
-			// 	}
-			// 	$messages = ['type' => 'image', 'originalContentUrl' => $templink, 'previewImageUrl' => $templink];
-			// }
-			// if ($text == "map")
-			// {
-			// 	$messages = ['type' => 'location','title'=> 'my location','address'=> 'เคลิ้ม',
-			// 	'latitude'=> 8.652311,'longitude'=> 99.918031];
-			// }
-			/*if($text == "image"){
-			$messages = [
-			$img_url = "http://sand.96.lt/images/q.jpg";
-			$outputText = new LINE\LINEBot\MessageBuilder\ImageMessageBuilder($img_url, $img_url);
-			$response = $bot->replyMessage($event->getReplyToken(), $outputText);
-			];
-			}*/
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = ['replyToken' => $replyToken, 'messages' => [$messages], ];
