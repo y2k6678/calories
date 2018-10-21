@@ -51,6 +51,8 @@ $water = file_get_contents('https://api.thingspeak.com/channels/331361/fields/4/
 $HUM = file_get_contents('https://api.thingspeak.com/channels/331361/fields/2/last.txt');
 $TEM = file_get_contents('https://api.thingspeak.com/channels/331361/fields/1/last.txt');
 $aba = ('https://i.imgur.com//yuRTcoH.jpg');
+
+hellojojo
 // convert
 $sqlgetlastrecord = "select * from weatherstation order by \"DATETIME\" desc limit 1";
 if (!is_null($events['events']))
