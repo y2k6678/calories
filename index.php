@@ -70,22 +70,22 @@ if (!is_null($events['events']))
 			$messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu ไม่มีในระบบ"];
 			$rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu");
 			$messages = ['type' => 'text',  'text' =>"รายการ : $rs"];
-			$qcount=0;
-			$foodname = $text;
-			$unit = "";
-			$cal = "";
-			while ($row = pg_fetch_row($rs))
-			{
-				$foodname = $row[0];
-				$unit = $row[1];
-				$cal = $row[2];
-				$qcount++;
-			}
-			$messages = ['type' => 'text',  'text' =>"รายการ : $qcount"];
-			if($qcount==0)
-				$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ไม่มีในระบบ"];
-			else
-				$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ปริมาณ : $unit แคล : $cal"];
+			// $qcount=0;
+			// $foodname = $text;
+			// $unit = "";
+			// $cal = "";
+			// while ($row = pg_fetch_row($rs))
+			// {
+			// 	$foodname = $row[0];
+			// 	$unit = $row[1];
+			// 	$cal = $row[2];
+			// 	$qcount++;
+			// }
+			// $messages = ['type' => 'text',  'text' =>"รายการ : $qcount"];
+			// if($qcount==0)
+			// 	$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ไม่มีในระบบ"];
+			// else
+			// 	$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ปริมาณ : $unit แคล : $cal"];
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
