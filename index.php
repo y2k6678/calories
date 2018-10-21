@@ -81,9 +81,9 @@ if (!is_null($events['events']))
 				$qcount++;
 			}
 			if($qcount!=0)
-			$messages = ['type' => 'text',  'text' =>'รายการ : '.$foodname.'\nปริมาณ : $unit\nแคล : $cal'];
+			$messages = ['type' => 'text',  'text' =>"รายการ : $foodname\nปริมาณ : $unit\nแคล : $cal"];
 			else
-			$messages = ['type' => 'text',  'text' =>'รายการ : '.$foodname.' ไม่มีในระบบ'];
+			$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ไม่มีในระบบ"];
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
