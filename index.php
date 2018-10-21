@@ -66,24 +66,24 @@ if (!is_null($events['events']))
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
-			$selectfoodmenu = "select * from calorie where MENU like \'.$text.\' limit 1";
+			$selectfoodmenu = "select * from calorie where MENU like '".$text."' limit 1";
 			$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ไม่มีในระบบ"];
-			// $rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu\n");
-			// $qcount=0;
-			// $foodname = "";
-			// $unit = "";
-			// $cal = "";
-			// while ($row = pg_fetch_row($rs))
-			// {
-			// 	$foodname = $row[1];
-			// 	$unit = $row[2];
-			// 	$cal = $row[3];
-			// 	$qcount++;
-			// }
-			// if($qcount!=0)
-			// $messages = ['type' => 'text',  'text' =>'รายการ : $foodname\nปริมาณ : $unit\nแคล : $cal'];
-			// else
-			// $messages = ['type' => 'text',  'text' =>'รายการ : $foodname ไม่มีในระบบ'];
+			$rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu\n");
+			$qcount=0;
+			$foodname = "";
+			$unit = "";
+			$cal = "";
+			while ($row = pg_fetch_row($rs))
+			{
+				$foodname = $row[1];
+				$unit = $row[2];
+				$cal = $row[3];
+				$qcount++;
+			}
+			if($qcount!=0)
+			$messages = ['type' => 'text',  'text' =>'รายการ : '.$foodname.'\nปริมาณ : $unit\nแคล : $cal'];
+			else
+			$messages = ['type' => 'text',  'text' =>'รายการ : '.$foodname.' ไม่มีในระบบ'];
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
