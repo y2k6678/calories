@@ -66,9 +66,9 @@ if (!is_null($events['events']))
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
-			$selectfoodmenu = "select * from calorie where MENU like '%$text%' limit 1";
+			$selectfoodmenu = "select menu,unit,cal from calorie where MENU = '$text' limit 1";
 			$messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu ไม่มีในระบบ"];
-			$rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu\n");
+			$rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu");
 			$messages = ['type' => 'text',  'text' =>"รายการ : $rs"];
 			$qcount=0;
 			$foodname = $text;
@@ -76,9 +76,9 @@ if (!is_null($events['events']))
 			$cal = "";
 			while ($row = pg_fetch_row($rs))
 			{
-				$foodname = $row[1];
-				$unit = $row[2];
-				$cal = $row[3];
+				$foodname = $row[0];
+				$unit = $row[1];
+				$cal = $row[2];
 				$qcount++;
 			}
 			$messages = ['type' => 'text',  'text' =>"รายการ : $qcount"];
