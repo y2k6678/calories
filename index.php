@@ -69,6 +69,7 @@ if (!is_null($events['events']))
 			$selectfoodmenu = "select * from calorie where MENU like '%$text%' limit 1";
 			$messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu ไม่มีในระบบ"];
 			$rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu\n");
+			$messages = ['type' => 'text',  'text' =>"รายการ : $rs"];
 			$qcount=0;
 			$foodname = $text;
 			$unit = "";
