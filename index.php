@@ -96,7 +96,7 @@ if (!is_null($events['events']))
 				else
 				$messages = ['type' => 'text',  'text' =>'รายการ : $foodname ไม่มีในระบบ'];
 
-			}
+			// }
 
 
 			// // id , menu ,unit ,cal
