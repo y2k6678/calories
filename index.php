@@ -68,18 +68,18 @@ if (!is_null($events['events']))
 
 			$selectfoodmenu = "select * from calorie where MENU like '%$text%' limit 1";
 			$messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu ไม่มีในระบบ"];
-			// $rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu\n");
-			// $qcount=0;
-			// $foodname = $text;
-			// $unit = "";
-			// $cal = "";
-			// while ($row = pg_fetch_row($rs))
-			// {
-			// 	$foodname = $row[1];
-			// 	$unit = $row[2];
-			// 	$cal = $row[3];
-			// 	$qcount++;
-			// }
+			$rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu\n");
+			$qcount=0;
+			$foodname = $text;
+			$unit = "";
+			$cal = "";
+			while ($row = pg_fetch_row($rs))
+			{
+				$foodname = $row[1];
+				$unit = $row[2];
+				$cal = $row[3];
+				$qcount++;
+			}
 			// if($qcount!=0)
 			// $messages = ['type' => 'text',  'text' =>"รายการ : $foodname\nปริมาณ : $unit\nแคล : $cal"];
 			// else
