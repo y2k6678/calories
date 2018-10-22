@@ -6,39 +6,39 @@ $pass = "e10240d71df70c411f5201bc37491e9091491ff276b8d8b66f8e507ea5b7dc22";
 $db = "dcv361109jo6fh";
 date_default_timezone_set("Asia/Bangkok");
 $date = date("Y-m-d");
-function showtime($time)
-{
-	$date = date("Y-m-d");
-	$h = split(":", $time);
-	if ($h[1] < 15)
-	{
-		$h[1] = "00";
-		$selectbydate = "select * from weatherstation where \"DATETIME\" BETWEEN '$date $h[0]:0:00' and '$date $h[0]:15:00' order by \"DATETIME\" desc limit 1";
-	}
-	else
-	if ($h[1] >= 15 && $h[1] < 30)
-	{
-		$h[1] = "15";
-		$selectbydate = "select * from weatherstation where \"DATETIME\" BETWEEN '$date $h[0]:15:01' and '$date $h[0]:30:00' order by \"DATETIME\" desc limit 1";
-	}
-	else
-	if ($h[1] >= 30 && $h[1] < 45)
-	{
-		$h[1] = "30";
-		$selectbydate = "select * from weatherstation where \"DATETIME\" BETWEEN '$date $h[0]:30:01' and '$date $h[0]:45:00' order by \"DATETIME\" desc limit 1";
-	}
-	else
-	if ($h[1] >= 45)
-	{
-		$h[1] = "45";
-		$selectbydate = "select * from weatherstation where \"DATETIME\" BETWEEN '$date $h[0]:45:01' and '$date $h[0]:59:59' order by \"DATETIME\" desc limit 1";
-	}
+// function showtime($time)
+// {
+// 	$date = date("Y-m-d");
+// 	$h = split(":", $time);
+// 	if ($h[1] < 15)
+// 	{
+// 		$h[1] = "00";
+// 		$selectbydate = "select * from weatherstation where \"DATETIME\" BETWEEN '$date $h[0]:0:00' and '$date $h[0]:15:00' order by \"DATETIME\" desc limit 1";
+// 	}
+// 	else
+// 	if ($h[1] >= 15 && $h[1] < 30)
+// 	{
+// 		$h[1] = "15";
+// 		$selectbydate = "select * from weatherstation where \"DATETIME\" BETWEEN '$date $h[0]:15:01' and '$date $h[0]:30:00' order by \"DATETIME\" desc limit 1";
+// 	}
+// 	else
+// 	if ($h[1] >= 30 && $h[1] < 45)
+// 	{
+// 		$h[1] = "30";
+// 		$selectbydate = "select * from weatherstation where \"DATETIME\" BETWEEN '$date $h[0]:30:01' and '$date $h[0]:45:00' order by \"DATETIME\" desc limit 1";
+// 	}
+// 	else
+// 	if ($h[1] >= 45)
+// 	{
+// 		$h[1] = "45";
+// 		$selectbydate = "select * from weatherstation where \"DATETIME\" BETWEEN '$date $h[0]:45:01' and '$date $h[0]:59:59' order by \"DATETIME\" desc limit 1";
+// 	}
 	
-	return array(
-		$h[0] . ":" . $h[1],
-		$selectbydate
-	);
-}
+// 	return array(
+// 		$h[0] . ":" . $h[1],
+// 		$selectbydate
+// 	);
+// }
 // database
 $dbconn = pg_connect("host=" . $GLOBALS['host'] . " port=5432 dbname=" . $GLOBALS['db'] . " user=" . $GLOBALS['user'] . " password=" . $GLOBALS['pass']) or die('Could not connect: ' . pg_last_error());
 // Get POST body content
@@ -66,9 +66,10 @@ if (!is_null($events['events']))
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
-			$selectfoodmenu = "select * from calorie where MENU = '$text' limit 1";
-			$messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu ไม่มีในระบบ $dbconn ===== host=" . $GLOBALS['host'] . " port=5432 dbname=" . $GLOBALS['db'] . " user=" . $GLOBALS['user'] . " password=" . $GLOBALS['pass'] ];
-			// $rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu");
+			$selectfoodmenu = "select * from calorie where MENU = \'$text\' limit 1";
+			$messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu"];
+			// $messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu ไม่มีในระบบ $dbconn ===== host=" . $GLOBALS['host'] . " port=5432 dbname=" . $GLOBALS['db'] . " user=" . $GLOBALS['user'] . " password=" . $GLOBALS['pass'] ];
+			$rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu");
 			// $messages = ['type' => 'text',  'text' =>"รายการ : $rs"];
 			// $qcount=0;
 			// $foodname = $text;
