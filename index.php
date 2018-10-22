@@ -65,7 +65,7 @@ if (!is_null($events['events']))
 			$text = $event['message']['text'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
-
+// s
 			$selectfoodmenu = "select * from calorie where MENU = \'$text\' limit 1";
 			$messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu"];
 			// $messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu ไม่มีในระบบ $dbconn ===== host=" . $GLOBALS['host'] . " port=5432 dbname=" . $GLOBALS['db'] . " user=" . $GLOBALS['user'] . " password=" . $GLOBALS['pass'] ];
