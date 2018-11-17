@@ -113,7 +113,7 @@ try
 		}
 	}
 }
-catch($ex)
+catch(Exception  $ex)
 {
 	echo $ex;
 }
