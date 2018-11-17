@@ -111,5 +111,6 @@ if (!is_null($events['events']))
 	}
 }
 echo "OK";
+echo "ssssss";
 echo $date;
 echo "select * from calorie where \"MENU\" = \'กล้วยฉาบ\' limit 1";
