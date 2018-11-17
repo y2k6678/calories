@@ -1,7 +1,7 @@
 <?php
 $access_token = '2SXOQ6j8Ipjcbg+PIgV8TexlTkhjodAiLYqXfdZ4Rvmv6y8gaLW9PDrVDP5SNvA+VbROj9BAJZIE5PSP5meBL9GDYemfcdw6B5cpwu8hPtEGCL15MFX8bilDpdvyVe8iI8p1Q3PFpIdn9047ldBvpAdB04t89/1O/w1cDnyilFU=';
 $host = "ec2-54-225-97-112.compute-1.amazonaws.com";
-$user = "mmdkvvqziulstc";
+$user = "qrnbebahudbqmp";
 $pass = "a43af8db99a527ec88af37c48030569674700a18b57304f05e4348f81e81b94f";
 $db = "d4d2gobi48opm9";
 date_default_timezone_set("Asia/Bangkok");
