@@ -78,22 +78,22 @@ try
 				// $messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu ไม่มีในระบบ $dbconn ===== host=" . $GLOBALS['host'] . " port=5432 dbname=" . $GLOBALS['db'] . " user=" . $GLOBALS['user'] . " password=" . $GLOBALS['pass'] ];
 				$rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu");
 				// $messages = ['type' => 'text',  'text' =>"รายการ : $rs"];
-				// $qcount=0;
-				// $foodname = $text;
-				// $unit = "";
-				// $cal = "";
-				// while ($row = pg_fetch_row($rs))
-				// {
-				// 	$foodname = $row[1];
-				// 	$unit = $row[2];
-				// 	$cal = $row[3];
-				// 	$qcount++;
-				// }
+				 $qcount=0;
+				 $foodname = $text;
+				 $unit = "";
+				 $cal = "";
+				 while ($row = pg_fetch_row($rs))
+				 {
+				 	$foodname = $row[1];
+				 	$unit = $row[2];
+				 	$cal = $row[3];
+				 	$qcount++;
+				 }
 				// $messages = ['type' => 'text',  'text' =>"รายการ : $qcount"];
-				// if($qcount==0)
-				// 	$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ไม่มีในระบบ"];
-				// else
-				// 	$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ปริมาณ : $unit แคล : $cal"];
+				 if($qcount==0)
+				 	$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ไม่มีในระบบ"];
+				 else
+				 	$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ปริมาณ : $unit แคล : $cal"];
 
 				// Make a POST Request to Messaging API to reply to sender
 				$url = 'https://api.line.me/v2/bot/message/reply';
