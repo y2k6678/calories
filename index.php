@@ -53,62 +53,69 @@ $TEM = file_get_contents('https://api.thingspeak.com/channels/331361/fields/1/la
 $aba = ('https://i.imgur.com//yuRTcoH.jpg');
 // convert
 // $sqlgetlastrecord = "select * from weatherstation order by \"DATETIME\" desc limit 1";
-if (!is_null($events['events']))
+try
 {
-	// Loop through each event
-	foreach($events['events'] as $event)
+	if (!is_null($events['events']))
 	{
-		// Reply only when message sent is in 'text' format
-		if ($event['type'] == 'message' && $event['message']['type'] == 'text')
+		// Loop through each event
+		foreach($events['events'] as $event)
 		{
-			// Get text sent
-			$text = $event['message']['text'];
-			// Get replyToken
-			$replyToken = $event['replyToken'];
-			//select * from calorie where "MENU" = 'กล้วยฉาบ' limit 1
-			$selectfoodmenu = "select * from calorie where \"MENU\" = '$text' limit 1";
-			$messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu"];
+			// Reply only when message sent is in 'text' format
+			if ($event['type'] == 'message' && $event['message']['type'] == 'text')
+			{
+				// Get text sent
+				$text = $event['message']['text'];
+				// Get replyToken
+				$replyToken = $event['replyToken'];
+				//select * from calorie where "MENU" = 'กล้วยฉาบ' limit 1
+				$selectfoodmenu = "select * from calorie where \"MENU\" = '$text' limit 1";
+				$messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu"];
 
 
-			// $messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu ไม่มีในระบบ $dbconn ===== host=" . $GLOBALS['host'] . " port=5432 dbname=" . $GLOBALS['db'] . " user=" . $GLOBALS['user'] . " password=" . $GLOBALS['pass'] ];
-			$rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu");
-			// $messages = ['type' => 'text',  'text' =>"รายการ : $rs"];
-			// $qcount=0;
-			// $foodname = $text;
-			// $unit = "";
-			// $cal = "";
-			// while ($row = pg_fetch_row($rs))
-			// {
-			// 	$foodname = $row[1];
-			// 	$unit = $row[2];
-			// 	$cal = $row[3];
-			// 	$qcount++;
-			// }
-			// $messages = ['type' => 'text',  'text' =>"รายการ : $qcount"];
-			// if($qcount==0)
-			// 	$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ไม่มีในระบบ"];
-			// else
-			// 	$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ปริมาณ : $unit แคล : $cal"];
+				// $messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu ไม่มีในระบบ $dbconn ===== host=" . $GLOBALS['host'] . " port=5432 dbname=" . $GLOBALS['db'] . " user=" . $GLOBALS['user'] . " password=" . $GLOBALS['pass'] ];
+				$rs = pg_query($dbconn, $selectfoodmenu) or die("Cannot execute query: $selectfoodmenu");
+				// $messages = ['type' => 'text',  'text' =>"รายการ : $rs"];
+				// $qcount=0;
+				// $foodname = $text;
+				// $unit = "";
+				// $cal = "";
+				// while ($row = pg_fetch_row($rs))
+				// {
+				// 	$foodname = $row[1];
+				// 	$unit = $row[2];
+				// 	$cal = $row[3];
+				// 	$qcount++;
+				// }
+				// $messages = ['type' => 'text',  'text' =>"รายการ : $qcount"];
+				// if($qcount==0)
+				// 	$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ไม่มีในระบบ"];
+				// else
+				// 	$messages = ['type' => 'text',  'text' =>"รายการ : $foodname ปริมาณ : $unit แคล : $cal"];
 
-			// Make a POST Request to Messaging API to reply to sender
-			$url = 'https://api.line.me/v2/bot/message/reply';
-			$data = ['replyToken' => $replyToken, 'messages' => [$messages], ];
-			$post = json_encode($data);
-			$headers = array(
-				'Content-Type: application/json',
-				'Authorization: Bearer ' . $access_token
-			);
-			$ch = curl_init($url);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			$result = curl_exec($ch);
-			curl_close($ch);
-			echo $result . "\r\n";
+				// Make a POST Request to Messaging API to reply to sender
+				$url = 'https://api.line.me/v2/bot/message/reply';
+				$data = ['replyToken' => $replyToken, 'messages' => [$messages], ];
+				$post = json_encode($data);
+				$headers = array(
+					'Content-Type: application/json',
+					'Authorization: Bearer ' . $access_token
+				);
+				$ch = curl_init($url);
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+				$result = curl_exec($ch);
+				curl_close($ch);
+				echo $result . "\r\n";
+			}
 		}
 	}
+}
+catch($ex)
+{
+	echo $ex;
 }
 echo "OK";
 echo "ssssss";
