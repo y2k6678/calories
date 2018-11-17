@@ -65,6 +65,7 @@ if (!is_null($events['events']))
 			$text = $event['message']['text'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
+			//select * from calorie where "MENU" = 'กล้วยฉาบ' limit 1
 			$selectfoodmenu = "select * from calorie where \"MENU\" = \'$text\' limit 1";
 			$messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu"];
 
@@ -111,3 +112,4 @@ if (!is_null($events['events']))
 }
 echo "OK";
 echo $date;
+echo "select * from calorie where \"MENU\" = \'กล้วยฉาบ\' limit 1";
