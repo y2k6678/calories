@@ -65,7 +65,7 @@ if (!is_null($events['events']))
 			$text = $event['message']['text'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
-			$selectfoodmenu = "select * from calorie where MENU = \'$text\' limit 1";
+			$selectfoodmenu = "select * from calorie where "MENU" = \'$text\' limit 1";
 			$messages = ['type' => 'text',  'text' =>"รายการ : $selectfoodmenu"];
 
 
