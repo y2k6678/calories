@@ -138,6 +138,6 @@ catch(Exception  $ex)
 				curl_close($ch);
 }
 echo "OK";
-echo "ssssss";
+echo "2";
 echo $date;
 echo "select * from calorie where \"MENU\" = 'กล้วยฉาบ' limit 1";
